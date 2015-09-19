@@ -1,0 +1,23 @@
+#compdef geany
+
+# local
+_arguments \
+'--column[Set initial column number for the first opened file]:column' \
+'--config[Use an alternate configuration directory]:path to configfile'\
+'--ft-names[Print internal filetype names]' \
+'--generate-tags[Generate global tags file]' \
+'--no-preprocessing[Dont preprocess C/C++ files when generating tags]' \
+'--new-instance[opening a new instance]' \
+'--line[line number on opened file]:linenumber' \
+'--no-msgwin[Dont show message window at startup]' \
+'--no-ctags[Dont load auto completion data (see documentation)]' \
+'--no-plugins[Dont load plugins]' \
+'--print-prefix[Print Geanys installation prefix]' \
+'--no-session[Dont load the previous sessions files]' \
+'--no-terminal[Dont load terminal support]' \
+'--vte-lib[Filename of libvte.so]' \
+'--verbose[Be verbose]' \
+'--version[Show version and exit]' \
+'--display[display to use]:xwindow'
+
+_files -J files -g '*'
