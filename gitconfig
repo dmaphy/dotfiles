@@ -1,0 +1,45 @@
+[user]
+	name = Dominic Hopf
+	email = dmaphy@fedoraproject.org
+[push]
+	default = upstream
+[pager]
+	color = true
+[color]
+	branch = auto
+	diff = auto
+	interactive =auto
+	status = auto
+	ui = auto
+[merge]
+	tool = meld
+[gui]
+	historybrowser = gitg
+	recentrepo = /home/dmaphy/projects/pdfmerge
+[alias]
+	chgd  = diff HEAD
+	fpu   = format-patch -s -p origin/master
+	graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f]\\+/\"&\"/g' ; echo '}'; }; f"
+	one   = "!sh -c 'git show -s --pretty=\"tformat:%h (%s, %ai\" \"$@\" | sed -e \"s/ [012][0-9]:[0-5][0-9]:[0-5][0-9] [-+][0-9][0-9][0-9][0-9]$/)/\"' -"
+	out   = !git push --dry-run
+	purge = !git checkout $(git rev-parse --show-cdup) && git clean -xdf
+	serve = !sh -c 'git daemon --reuseaddr --verbose \"$@\" --base-path=. --export-all ./.git' sh
+	tagme = !sh -c '[ -z "$1" ] && exit 1 || git tag -s v\"$1\" -m \"release \"$1\"\"' sh
+	who   = "!sh -c 'git log -1 --pretty=\"format:%an <%ae>\" --author=\"$1\"' -"
+	wdiff = diff --color-words
+	cat = !cat @
+	ds = diff --stat
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	uncommit = reset --soft HEAD^
+	branch-info = "!sh -c 'git branch --no-color | \
+				sed -e \"s/*/ /\" | \
+				while read branch; do \
+				  git --no-pager log -1 --format=format:\"%Cred$branch:%Cblue %s %Cgreen%h%Creset (%ar)%n\" $branch; \
+				done'"
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	olg   = log --abbrev-commit --abbrev=6 --pretty=oneline
+[tar "tar.xz"]
+	comand = xz -c
+[core]
+	pager = less -x5,9
