@@ -1,0 +1,35 @@
+# vim: syntax=sh
+
+alias la='ls -a';
+alias mysql='mysql --line-numbers --column-names --pager=less --show-warnings';
+
+#alias java=$JAVA_HOME/bin/java;
+#alias javac=$JAVA_HOME/bin/javac" -deprecation";
+#alias jar=$JAVA_HOME/bin/jar
+
+alias wtf='dmesg'
+alias onoz='cat /var/log/errors.log'
+alias rtfm='man'
+
+alias visible='echo'
+alias invisible='cat'
+alias moar='more'
+
+alias icanhas='mkdir'
+alias donotwant='rm'
+alias dowant='cp'
+alias gtfo='mv'
+
+alias hai='cd'
+alias plz='pwd'
+
+alias inur='locate'
+
+alias nomz='ps -aux'
+alias nomnom='killall'
+
+alias cya='reboot'
+alias kthxbai='halt'
+
+alias s="ssh"
+alias telegram="telegram-cli -k /etc/telegram/server.pub/tg-server.pub"

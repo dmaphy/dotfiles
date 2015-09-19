@@ -77,9 +77,9 @@ zle -N mquote && bindkey '^q' mquote
 
 ## define word separators (for stuff like backward-word, forward-word, backward-kill-word,..)
 WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' # the default
-#WORDCHARS=.
-#WORDCHARS='*?_[]~=&;!#$%^(){}'
-#WORDCHARS='${WORDCHARS:s@/@}'
+WORDCHARS=.
+WORDCHARS='*?_[]~=&;!#$%^(){}'
+WORDCHARS='${WORDCHARS:s@/@}'
 
 # just type '...' to get '../..'
 rationalise-dot() {
@@ -108,7 +108,7 @@ bindkey '\eq' push-line-or-edit
 #setopt nonomatch
 
 ## warning if file exists ('cat /dev/null > ~/.zshrc')
-#setopt NO_clobber
+setopt NO_clobber
 
 ## don't warn me about bg processes when exiting
 #setopt nocheckjobs
@@ -164,6 +164,15 @@ zstyle ':completion:*' completer _expand_alias _complete _approximate
 zstyle ':completion:*' special-dirs true
 
 ## aliases ##
+if [ -f $HOME/.aliases ]; then
+    source $HOME/.aliases
+fi
+
+## functions ##
+if [ -f $HOME/.functions ]; then
+    source $HOME/.functions
+fi
+
 
 ## translate
 alias u='translate -i'
@@ -176,6 +185,7 @@ alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/nu
 
 alias -g '...'='../..'
 alias -g '....'='../../..'
+check_com s &>/dev/null || alias s='ssh'
 #alias -g BG='& exit'
 #alias -g C='|wc -l'
 #alias -g G='|grep'
@@ -191,7 +201,6 @@ alias -g '....'='../../..'
 #alias -g S='| sort'
 #alias -g T='|tail'
 #alias -g V='| vim -'
-alias -g s="ssh"
 
 ## instead of global aliase it might be better to use grmls $abk assoc array, whose contents are expanded after pressing ,.
 #$abk[SnL]="| sort -n | less"
@@ -206,6 +215,10 @@ alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 #alias CH="./configure --help"
 
 ## miscellaneous code ##
+fpath=($fpath $HOME/.zshcomp)
+autoload -U compinit
+compinit
+zstyle ':completion:*:default' menu select=1
 
 ## Use a default width of 80 for manpages for more convenient reading
 export MANWIDTH=${MANWIDTH:-80}
@@ -319,22 +332,52 @@ if [[ "$TERM" == "xterm" ]] && [[ "$LINES" -ge 50 ]] && [[ "$COLUMNS" -ge 100 ]]
 fi
 
 ## Some quick Perl-hacks aka /useful/ oneliner
-#bew() { perl -le 'print unpack "B*","'$1'"' }
-#web() { perl -le 'print pack "B*","'$1'"' }
-#hew() { perl -le 'print unpack "H*","'$1'"' }
-#weh() { perl -le 'print pack "H*","'$1'"' }
-#pversion()    { perl -M$1 -le "print $1->VERSION" } # i. e."pversion LWP -> 5.79"
-#getlinks ()   { perl -ne 'while ( m/"((www|ftp|http):\/\/.*?)"/gc ) { print $1, "\n"; }' $* }
-#gethrefs ()   { perl -ne 'while ( m/href="([^"]*)"/gc ) { print $1, "\n"; }' $* }
-#getanames ()  { perl -ne 'while ( m/a name="([^"]*)"/gc ) { print $1, "\n"; }' $* }
-#getforms ()   { perl -ne 'while ( m:(\</?(input|form|select|option).*?\>):gic ) { print $1, "\n"; }' $* }
-#getstrings () { perl -ne 'while ( m/"(.*?)"/gc ) { print $1, "\n"; }' $*}
-#getanchors () { perl -ne 'while ( m/«([^«»\n]+)»/gc ) { print $1, "\n"; }' $* }
-#showINC ()    { perl -e 'for (@INC) { printf "%d %s\n", $i++, $_ }' }
-#vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
-#vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
+bew() { perl -le 'print unpack "B*","'$1'"' }
+web() { perl -le 'print pack "B*","'$1'"' }
+hew() { perl -le 'print unpack "H*","'$1'"' }
+weh() { perl -le 'print pack "H*","'$1'"' }
+pversion()    { perl -M$1 -le "print $1->VERSION" } # i. e."pversion LWP -> 5.79"
+getlinks ()   { perl -ne 'while ( m/"((www|ftp|http):\/\/.*?)"/gc ) { print $1, "\n"; }' $* }
+gethrefs ()   { perl -ne 'while ( m/href="([^"]*)"/gc ) { print $1, "\n"; }' $* }
+getanames ()  { perl -ne 'while ( m/a name="([^"]*)"/gc ) { print $1, "\n"; }' $* }
+getforms ()   { perl -ne 'while ( m:(\</?(input|form|select|option).*?\>):gic ) { print $1, "\n"; }' $* }
+getstrings () { perl -ne 'while ( m/"(.*?)"/gc ) { print $1, "\n"; }' $*}
+getanchors () { perl -ne 'while ( m/«([^«»\n]+)»/gc ) { print $1, "\n"; }' $* }
+showINC ()    { perl -e 'for (@INC) { printf "%d %s\n", $i++, $_ }' }
+vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
+vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
+
+## disable some grml zshrc features 
+unsetopt share_history
+unsetopt append_history 
 
 bindkey -v
+bindkey '^R' history-incremental-search-backward
+bindkey '^E' edit-command-line
+bindkey "^H" run-help
 
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" history-beginning-search-backward
+bindkey "\e[6~" history-beginning-search-forward
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\e[5D" backward-word
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
+
+# for rxvt
+bindkey "\e[8~" end-of-line
+bindkey "\eOc" forward-word
+bindkey "\eOd" backward-word
+
+# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+
+# for freebsd console
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
 
 ## END OF FILE #################################################################
