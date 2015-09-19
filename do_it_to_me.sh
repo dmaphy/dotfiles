@@ -9,5 +9,5 @@ symlinks=(aliases environment functions gitconfig inputrc zshcomp zshenv zshrc.p
 
 for symlink in ${symlinks};
 do
-	ln -s ${HOME}/.${symlink} ${HOME}/projects/dotfiles/${symlink};
+	ln -s ${HOME}/projects/dotfiles/${symlink} ${HOME}/.${symlink}; 
 done
