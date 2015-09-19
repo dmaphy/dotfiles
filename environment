@@ -1,0 +1,28 @@
+# vim: filetype=sh
+
+JAVA_HOME=/usr/lib/jvm/java
+PATH=$PATH:$JAVA_HOME/bin/;
+CLASSPATH=.:$JAVA_HOME/src.zip:$JAVA_HOME/lib/;
+BOOTCLASSPATH=.:$JAVA_HOME/src.zip:$JAVA_HOME/lib/;
+SOURCEPATH=.:$JAVA_HOME/src.zip;
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+export PATH
+
+export CC="ccache gcc"
+export CXX="ccache g++"
+
+export WAFCACHE="$HOME/.cache/waf"
+
+export XDEBUG_CONFIG=remote_handler=gdb;
+
+export SVN_SSH="ssh -l dmaphy";
+#export GIT_SSH="ssh -l dmaphy";
+export SVN_EDITOR="vim";
+
+if [ -f $HOME/.mpdhost ]; then
+	source $HOME/.mpdhost;
+fi
