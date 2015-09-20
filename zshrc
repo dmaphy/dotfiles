@@ -1621,8 +1621,6 @@ if [[ -f ${DIRSTACKFILE} ]]; then
     # Enabling NULL_GLOB via (N) weeds out any non-existing
     # directories from the saved dir-stack file.
     dirstack=( ${(f)"$(< $DIRSTACKFILE)"}(N) )
-    # "cd -" won't work after login by just setting $OLDPWD, so
-    [[ -d $dirstack[1] ]] && cd -q $dirstack[1] && cd -q $OLDPWD
 fi
 
 if zstyle -T ':grml:chpwd:dirstack' filter-on-load; then
