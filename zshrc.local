@@ -81,43 +81,15 @@ WORDCHARS=.
 WORDCHARS='*?_[]~=&;!#$%^(){}'
 WORDCHARS='${WORDCHARS:s@/@}'
 
-# just type '...' to get '../..'
-rationalise-dot() {
-local MATCH
-if [[ $LBUFFER =~ '(^|/| |	|'$'\n''|\||;|&)\.\.$' ]]; then
-  LBUFFER+=/
-  zle self-insert
-  zle self-insert
-else
-  zle self-insert
-fi
-}
-zle -N rationalise-dot
-bindkey . rationalise-dot
-# without this, typing a . aborts incremental history search
-bindkey -M isearch . self-insert
-
 bindkey '\eq' push-line-or-edit
 
 ## some popular options ##
-
-## add `|' to output redirections in the history
-#setopt histallowclobber
-
-## try to avoid the 'zsh: no matches found...'
-#setopt nonomatch
-
-## warning if file exists ('cat /dev/null > ~/.zshrc')
-setopt NO_clobber
 
 ## don't warn me about bg processes when exiting
 #setopt nocheckjobs
 
 ## alert me if something failed
 setopt printexitvalue
-
-## with spelling correction, assume dvorak kb
-#setopt dvorak
 
 ## Allow comments even in interactive shells
 setopt interactivecomments
