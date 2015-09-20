@@ -74,8 +74,8 @@ zstyle ':vcs_info:*' enable git cvs svn bzr darcs
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' check-for-staged-changes true
 zstyle ':vcs_info:*' get-revision true
-zstyle ':vcs_info:*' stagedstr '%F{green}+%f'
-zstyle ':vcs_info:*' unstagedstr '%F{red}+%f'
+zstyle ':vcs_info:*' stagedstr '%F{green} +%f'
+zstyle ':vcs_info:*' unstagedstr '%F{red} +%f'
 
 zstyle ':prompt:grml:left:setup' items vi-mode date time newline rc virtual-env change-root user at host path vcs percent
 zstyle ':prompt:grml:right:setup' items vcs-status sad-smiley
