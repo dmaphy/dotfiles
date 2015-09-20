@@ -41,14 +41,23 @@ fi
 ## .zshrc.local file (just copy'n'paste and uncomment it there):
 
 ## Prompt theme extension ##
+source ~/.vi-mode.zsh
 
 # Virtualenv support
 
 function virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
-grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs percent
+
+#function vcs_status_prompt () {
+#    git status -s 
+#}
+
+grml_theme_add_token virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
+grml_theme_add_token vi-mode '%1v' '%F{blue}(' ')%f%k '
+#grml_theme_add_token  vcs-status -f vcs_status_prompt
+zstyle ':prompt:grml:left:setup' items rc virtual-env change-root vi-mode date time user at host path vcs percent
+zstyle ':prompt:grml:*:items:date' token '%D{%Y-%m-%d} '
 
 ## ZLE tweaks ##
 

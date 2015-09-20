@@ -5,7 +5,7 @@ if [ ${SHELL} = "zsh" ]; then
 	exit 1337;
 fi
 
-symlinks=(aliases environment functions gitconfig inputrc zshcomp zshenv zshrc.pre)
+symlinks=(aliases environment functions gitconfig inputrc zshcomp zshenv zshrc.pre vi-mode.zsh)
 
 for symlink in ${symlinks};
 do
