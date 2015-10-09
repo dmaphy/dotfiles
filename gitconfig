@@ -13,9 +13,9 @@
 	ui = auto
 [merge]
 	tool = meld
-[gui]
-	historybrowser = gitg
-	recentrepo = /home/dmaphy/projects/pdfmerge
+	log = true
+[branch]
+	autosetuprebase = always
 [alias]
 	chgd  = diff HEAD
 	fpu   = format-patch -s -p origin/master
@@ -32,6 +32,7 @@
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	uncommit = reset --soft HEAD^
+	unstage = reset
 	branch-info = "!sh -c 'git branch --no-color | \
 				sed -e \"s/*/ /\" | \
 				while read branch; do \
