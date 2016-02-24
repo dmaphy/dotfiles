@@ -33,3 +33,7 @@ alias kthxbai='halt'
 
 alias s="ssh"
 alias telegram="telegram-cli -k /etc/telegram/server.pub/tg-server.pub"
+
+if [ -x /usr/bin/colordiff ]; then
+  alias diff="colordiff"
+fi
