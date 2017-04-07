@@ -1,3 +1,5 @@
+# vim: syntax=gitconfig
+
 [user]
 	name = Dominic Hopf
 	email = dmaphy@fedoraproject.org
@@ -39,8 +41,16 @@
 				  git --no-pager log -1 --format=format:\"%Cred$branch:%Cblue %s %Cgreen%h%Creset (%ar)%n\" $branch; \
 				done'"
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	olg   = log --abbrev-commit --abbrev=6 --pretty=oneline
+	olg = log --abbrev-commit --abbrev=6 --pretty=oneline
+  #prune-branches = "!sh -c 'git fetch -p | awk \"{ print $5 }\" | cut -d \"/\" -f 2- | xargs git branch -d -' -"
+
+  # tfetch is for fetching deleted tags from the remote.
+  tfetch = fetch --prune origin '+refs/tags/*:refs/tags/*'
 [tar "tar.xz"]
 	comand = xz -c
 [core]
 	pager = less -x5,9
+[diff]
+	tool = meld
+[remote "origin"]
+	prune = true
