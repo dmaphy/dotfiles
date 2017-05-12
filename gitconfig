@@ -42,10 +42,9 @@
 				done'"
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	olg = log --abbrev-commit --abbrev=6 --pretty=oneline
-  #prune-branches = "!sh -c 'git fetch -p | awk \"{ print $5 }\" | cut -d \"/\" -f 2- | xargs git branch -d -' -"
 
-  # tfetch is for fetching deleted tags from the remote.
-  tfetch = fetch --prune origin '+refs/tags/*:refs/tags/*'
+	# tfetch is for fetching deleted tags from the remote.
+	tfetch = fetch --prune origin '+refs/tags/*:refs/tags/*'
 [tar "tar.xz"]
 	comand = xz -c
 [core]
