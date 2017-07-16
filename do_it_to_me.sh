@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ "${SHELL}" != "zsh" ]; then
+if [ "${SHELL}" != "zsh" -a "${SHELL}" != "/bin/zsh" -a "${SHELL}" != "/usr/bin/zsh" ]; then
 	echo "Thou shall not use this without Zsh.";
 	exit 1337;
 fi
