@@ -1,2 +1,7 @@
-$HOME/.local/bin/hacker.zsh
-$HOME/.local/bin/fortune_cowsay.sh
+if [ -r $HOME/.local/bin/hacker.zsh ]; then
+  source $HOME/.local/bin/hacker.zsh
+fi
+
+if [ -r $HOME/.local/bin/fortune_cowsay.sh ]; then
+  source $HOME/.local/bin/fortune_cowsay.sh
+fi
