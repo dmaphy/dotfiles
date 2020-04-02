@@ -6,23 +6,23 @@ CLASSPATH=.:$JAVA_HOME/src.zip:$JAVA_HOME/lib/;
 BOOTCLASSPATH=.:$JAVA_HOME/src.zip:$JAVA_HOME/lib/;
 SOURCEPATH=.:$JAVA_HOME/src.zip;
 
+PYENV_ROOT="$HOME/.pyenv"
+PATH="$PYENV_ROOT/bin:$PATH"
+
 # User specific environment and startup programs
 
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
-
 export CC="ccache gcc"
 export CXX="ccache g++"
-
 export WAFCACHE="$HOME/.cache/waf"
-
 export XDEBUG_CONFIG=remote_handler=gdb;
-
-export SVN_SSH="ssh -l dmaphy";
-#export GIT_SSH="ssh -l dmaphy";
-export SVN_EDITOR="vim";
 
 if [ -f $HOME/.mpdhost ]; then
 	source $HOME/.mpdhost;
+fi
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi
