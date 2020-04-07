@@ -20,21 +20,21 @@
 ## /etc/zsh/zshrc was installed as ~/.zshrc.global and
 ## ~/.zshrc.local does not exist yet.
 if [ -r ~/.zshrc -a -r ~/.zshrc.global -a ! -r ~/.zshrc.local ] ; then
-    printf '-!-\n'
-    printf '-!- Looks like you are using the old zshrc layout of grml.\n'
-    printf '-!- Please read the notes in the grml-zsh-refcard, being'
-    printf '-!- available at: http://grml.org/zsh/\n'
-    printf '-!-\n'
-    printf '-!- If you just want to get rid of this warning message execute:\n'
-    printf '-!-        touch ~/.zshrc.local\n'
-    printf '-!-\n'
+	printf '-!-\n'
+	printf '-!- Looks like you are using the old zshrc layout of grml.\n'
+	printf '-!- Please read the notes in the grml-zsh-refcard, being'
+	printf '-!- available at: http://grml.org/zsh/\n'
+	printf '-!-\n'
+	printf '-!- If you just want to get rid of this warning message execute:\n'
+	printf '-!-        touch ~/.zshrc.local\n'
+	printf '-!-\n'
 fi
 
 # Settings for umask
 if (( EUID == 0 )); then
-    umask 002
+	umask 002
 else
-    umask 022
+	umask 022
 fi
 
 ## Now, we'll give a few examples of what you might want to use in your
@@ -46,7 +46,26 @@ source ~/.vi-mode.zsh
 # Virtualenv support
 
 function virtual_env_prompt () {
-    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+	REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+}
+
+function python_environment_prompt() {
+	if [[ -n "$PYENV_VERSION" ]]; then
+	  REPLY="(Python $PYENV_VERSION)"
+	elif [ $commands[pyenv] ]; then
+		local pyenv_version_name="$(pyenv version-name)"
+		local pyenv_global="system"
+		local pyenv_root="$(pyenv root)"
+
+		if [[ -f "${pyenv_root}/version" ]]; then
+			pyenv_global="$(pyenv version-file-read ${pyenv_root}/version)"
+		fi
+
+		if [[ "${pyenv_version_name}" != "${pyenv_global}" ]]; then
+			REPLY="(Python ${pyenv_version_name})"
+		fi
+	fi
+
 }
 
 function vcs_status_prompt () {
@@ -67,6 +86,7 @@ function vcs_status_prompt () {
 }
 
 grml_theme_add_token virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
+grml_theme_add_token pyenv -f python_environment_prompt '%F{magenta}' '%f'
 grml_theme_add_token vi-mode '%1v' '%F{blue}(' ')%f%k '
 grml_theme_add_token vcs-status -f vcs_status_prompt
 
@@ -78,7 +98,7 @@ zstyle ':vcs_info:*' stagedstr '%F{green} +%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red} +%f'
 
 zstyle ':prompt:grml:left:setup' items vi-mode date time newline rc virtual-env change-root user at host path vcs percent
-zstyle ':prompt:grml:right:setup' items vcs-status sad-smiley
+zstyle ':prompt:grml:right:setup' items pyenv vcs-status sad-smiley
 zstyle ':prompt:grml:*:items:date' token '%D{%Y-%m-%d} '
 zstyle ':prompt:grml:*:items:time' token '%D{%H:%M:%S %s} '
 
@@ -99,11 +119,11 @@ bindkey "^Z" predict-off
 
 # press ctrl-q to quote line:
 mquote () {
-      zle beginning-of-line
-      zle forward-word
-      # RBUFFER="'$RBUFFER'"
-      RBUFFER=${(q)RBUFFER}
-      zle end-of-line
+	zle beginning-of-line
+	zle forward-word
+	# RBUFFER="'$RBUFFER'"
+	RBUFFER=${(q)RBUFFER}
+	zle end-of-line
 }
 zle -N mquote && bindkey '^q' mquote
 
@@ -139,12 +159,12 @@ zstyle ':completion:*' special-dirs true
 
 ## aliases ##
 if [ -f $HOME/.aliases ]; then
-    source $HOME/.aliases
+	source $HOME/.aliases
 fi
 
 ## functions ##
 if [ -f $HOME/.functions ]; then
-    source $HOME/.functions
+	source $HOME/.functions
 fi
 
 
@@ -205,36 +225,36 @@ manzsh()  { /usr/bin/man zshall |  most +/"$1" ; }
 
 ## Switching shell safely and efficiently? http://www.zsh.org/mla/workers/2001/msg02410.html
 bash() {
-    NO_SWITCH="yes" command bash "$@"
+	NO_SWITCH="yes" command bash "$@"
 }
 restart () {
-    exec $SHELL $SHELL_ARGS "$@"
+	exec $SHELL $SHELL_ARGS "$@"
 }
 
 ## Memory overview
 memusage() {
-    ps aux | awk '{if (NR > 1) print $5;
-                   if (NR > 2) print "+"}
-                   END { print "p" }' | dc
+	ps aux | awk '{if (NR > 1) print $5;
+				   if (NR > 2) print "+"}
+				   END { print "p" }' | dc
 }
 
 ## print hex value of a number
 hex() {
-    emulate -L zsh
-    if [[ -n "$1" ]]; then
-        printf "%x\n" $1
-    else
-        print 'Usage: hex <number-to-convert>'
-        return 1
-    fi
+	emulate -L zsh
+	if [[ -n "$1" ]]; then
+		printf "%x\n" $1
+	else
+		print 'Usage: hex <number-to-convert>'
+		return 1
+	fi
 }
 
 ## log out? set timeout in seconds...
 ## ...and do not log out in some specific terminals:
 if [[ "${TERM}" == ([Exa]term*|rxvt|dtterm|screen*) ]] ; then
-    unset TMOUT
+	unset TMOUT
 else
-    TMOUT=1800
+	TMOUT=1800
 fi
 
 ## associate types and extensions (be aware with perl scripts and anwanted behaviour!)
@@ -257,9 +277,9 @@ showINC ()    { perl -e 'for (@INC) { printf "%d %s\n", $i++, $_ }' }
 vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
 vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
 
-## disable some grml zshrc features 
+## disable some grml zshrc features
 unsetopt share_history
-unsetopt append_history 
+unsetopt append_history
 
 bindkey -v
 bindkey '^E' edit-command-line
