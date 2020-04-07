@@ -45,7 +45,7 @@
 
   # tfetch is for fetching deleted tags from the remote.
   tfetch = fetch --prune origin '+refs/tags/*:refs/tags/*'
-  push-mr = push -o merge_request.create -o merge_request.target=master --set-upstream origin bump-dependencies-simplify
+  push-mr = "!sh -c 'git push -o merge_request.create -o merge_request.target=master --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'"
 [tar "tar.xz"]
   comand = xz -c
 [core]
