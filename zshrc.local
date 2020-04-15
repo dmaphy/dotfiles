@@ -97,8 +97,8 @@ zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' stagedstr '%F{green} +%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red} +%f'
 
-zstyle ':prompt:grml:left:setup' items vi-mode date time newline rc virtual-env change-root user at host path vcs percent
-zstyle ':prompt:grml:right:setup' items pyenv vcs-status sad-smiley
+zstyle ':prompt:grml:left:setup' items newline vi-mode date time pyenv vcs-status newline rc virtual-env change-root user at host path vcs percent
+zstyle ':prompt:grml:right:setup' items sad-smiley
 zstyle ':prompt:grml:*:items:date' token '%D{%Y-%m-%d} '
 zstyle ':prompt:grml:*:items:time' token '%D{%H:%M:%S %s} '
 
