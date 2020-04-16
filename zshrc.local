@@ -40,11 +40,10 @@ fi
 ## Now, we'll give a few examples of what you might want to use in your
 ## .zshrc.local file (just copy'n'paste and uncomment it there):
 
-## Prompt theme extension ##
 source ~/.vi-mode.zsh
 
+## Prompt theme extension ##
 # Virtualenv support
-
 function virtual_env_prompt () {
 	REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
@@ -97,10 +96,10 @@ zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' stagedstr '%F{green} +%f'
 zstyle ':vcs_info:*' unstagedstr '%F{red} +%f'
 
-zstyle ':prompt:grml:left:setup' items newline vi-mode date time pyenv vcs-status newline rc virtual-env change-root user at host path vcs percent
-zstyle ':prompt:grml:right:setup' items sad-smiley
 zstyle ':prompt:grml:*:items:date' token '%D{%Y-%m-%d} '
 zstyle ':prompt:grml:*:items:time' token '%D{%H:%M:%S %s} '
+zstyle ':prompt:grml:left:setup' items newline vi-mode date time pyenv vcs-status newline rc virtual-env change-root user at host path vcs percent
+zstyle ':prompt:grml:right:setup' items battery sad-smiley 
 
 ## ZLE tweaks ##
 
