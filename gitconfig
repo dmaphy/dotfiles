@@ -1,8 +1,9 @@
 # vim: syntax=gitconfig
 
 [user]
-	name = Dominic Hopf
-	email = dmaphy@fedoraproject.org
+  name = Dominic Hopf
+  email = dmaphy@fedoraproject.org
+  signingkey = A7DFC4FC07AE4DDC5CA0BD93AAB06019CA7D868D
 [push]
   default = upstream
 [pager]
@@ -16,8 +17,6 @@
 [merge]
   tool = meld
   log = true
-[branch]
-  autosetuprebase = always
 [alias]
   chgd  = diff HEAD
   fpu   = format-patch -s -p origin/master
@@ -54,3 +53,5 @@
   tool = meld
 [remote "origin"]
   prune = true
+[pull]
+	rebase = true
