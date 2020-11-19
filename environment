@@ -19,6 +19,10 @@ export CXX="ccache g++"
 export WAFCACHE="$HOME/.cache/waf"
 export XDEBUG_CONFIG=remote_handler=gdb;
 
+if [ -f $HOME/.awskey ]; then
+	source $HOME/.awskey ;
+fi
+
 if [ -f $HOME/.mpdhost ]; then
 	source $HOME/.mpdhost;
 fi
@@ -26,3 +30,4 @@ fi
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
