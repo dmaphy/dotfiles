@@ -1,1 +1,6 @@
 svndiff() { svn diff "$@" | colordiff | less -R }
+
+function kube-watch-all () {
+  APILIST=$(kubectl api-resources --verbs=list --namespaced -o name | egrep -v "(events)" | tr '\n' ',' | sed "s/,$//")
+  watch -n5 "kubectl get $APILIST -o wide --ignore-not-found"
+}
