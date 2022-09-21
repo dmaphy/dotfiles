@@ -6,6 +6,7 @@
   signingkey = A7DFC4FC07AE4DDC5CA0BD93AAB06019CA7D868D
 [push]
   default = upstream
+  autoSetupRemote = true
 [pager]
   color = true
 [color]
@@ -55,3 +56,5 @@
   prune = true
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
