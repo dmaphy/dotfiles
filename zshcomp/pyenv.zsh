@@ -1,0 +1,1 @@
+/home/dmaphy/.pyenv/completions/pyenv.zsh
