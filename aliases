@@ -23,7 +23,8 @@ alias rtfm='man'
 alias s="ssh"
 alias visible='echo'
 
-alias kcn='kubectl config set-context $(kubectl config current-context) --namespace'
+alias kc="kubecm"
+alias kcn='kubectl config set-context --current --namespace'
 
 if [ -x /usr/bin/gpg2 ]; then
   alias gpg="gpg2"
