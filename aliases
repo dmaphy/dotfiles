@@ -23,6 +23,7 @@ alias rtfm='man'
 alias s="ssh"
 alias visible='echo'
 
+alias kubecm="kubectl kc"
 alias kc="kubecm"
 alias kcn='kubectl config set-context --current --namespace'
 

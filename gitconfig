@@ -58,3 +58,6 @@
 	rebase = true
 [init]
 	defaultBranch = main
+	templateDir = /home/dmaphy/.git-template
+[commit]
+	gpgsign = true

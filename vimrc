@@ -46,11 +46,13 @@ vnoremap > >gv  " better indentation
 vnoremap <Leader>s :sort<CR>
 
 set number
+set relativenumber
 set tw=79
 set nowrap
 set fo-=t   " don't automatically wrap text when typing
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
+colorscheme habamax
 
 " Useful settings
 set history=700
