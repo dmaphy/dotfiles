@@ -1,9 +1,13 @@
 # vim: syntax=gitconfig
 
+[includeif "gitdir:/home/dmaphy/projects/fedora/"]
+    path = .gitconfig.fedora
+[includeif "gitdir:/home/dmaphy/projects/inovex/"]
+    path = .gitconfig.inovex
+[includeif "gitdir:/home/dmaphy/projects/"]
+    path = .gitconfig.dmaphy
 [user]
   name = Dominic Hopf
-  email = dmaphy@fedoraproject.org
-  signingkey = A7DFC4FC07AE4DDC5CA0BD93AAB06019CA7D868D
 [push]
   default = upstream
   autoSetupRemote = true
@@ -59,5 +63,3 @@
 [init]
 	defaultBranch = main
 	templateDir = /home/dmaphy/.git-template
-[commit]
-	gpgsign = true

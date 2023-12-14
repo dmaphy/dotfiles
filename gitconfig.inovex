@@ -1,0 +1,7 @@
+# vim: syntax=dosini
+
+[user]
+  email = dominic.hopf@inovex.de
+  signingkey = 7DD4E21DE636357FED221FFE9A6B40A0CA19C929
+[commit]
+	gpgsign = true

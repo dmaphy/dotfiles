@@ -1,0 +1,6 @@
+# vim: syntax=dosini
+[user]
+  email = dmaphy@googlemail.com
+  signingkey = A7DFC4FC07AE4DDC5CA0BD93AAB06019CA7D868D
+[commit]
+	gpgsign = false
