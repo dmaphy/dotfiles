@@ -23,9 +23,12 @@ alias rtfm='man'
 alias s="ssh"
 alias visible='echo'
 
-alias kubecm="kubectl kc"
 alias kc="kubecm"
 alias kcn='kubectl config set-context --current --namespace'
+alias krew='kubectl krew'
+alias kubecm="kubectl kc"
+#alias kyverno='kubectl kyverno'
+alias stern='kubectl stern'
 
 if [ -x /usr/bin/gpg2 ]; then
   alias gpg="gpg2"
