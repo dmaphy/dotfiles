@@ -8,20 +8,6 @@
     path = .gitconfig.dmaphy
 [user]
   name = Dominic Hopf
-[push]
-  default = upstream
-  autoSetupRemote = true
-[pager]
-  color = true
-[color]
-  branch = auto
-  diff = auto
-  interactive =auto
-  status = auto
-  ui = auto
-[merge]
-  tool = meld
-  log = true
 [alias]
   chgd  = diff HEAD
   fpu   = format-patch -s -p origin/master
@@ -50,16 +36,65 @@
   # tfetch is for fetching deleted tags from the remote.
   tfetch = fetch --prune origin '+refs/tags/*:refs/tags/*'
   push-mr = "!sh -c 'git push -o merge_request.create -o merge_request.target=master --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'"
-[tar "tar.xz"]
-  comand = xz -c
+  yd = !sh -c ydiff -s -w0
+  yl = !sh -c ydiff -ls -w0
+[branch]
+  sort = -committerdate
+[column]
+  ui = auto
+[color]
+  branch = auto
+  diff = auto
+  interactive =auto
+  status = auto
+  ui = auto
+[commit]
+  verbose = true
 [core]
+  fsmonitor = true
+  untrackedCache = true
   pager = less -x5,9
 [diff]
   tool = meld
-[remote "origin"]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[feature]
+  experimental = true
+[fetch]
   prune = true
-[pull]
-	rebase = true
+  pruneTags = true
+  all = true
+[grep]
+  patternType = perl
+[help]
+	autocorrect = prompt
 [init]
 	defaultBranch = main
 	templateDir = /home/dmaphy/.git-template
+[merge]
+  tool = meld
+  log = true
+  conflictstyle = zdiff3
+[tag]
+  sort = version:refname
+[tar "tar.xz"]
+  comand = xz -c
+[pager]
+  color = true
+[pull]
+	rebase = true
+[push]
+  default = upstream
+  autoSetupRemote = true
+  followTags = true
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+[remote "origin"]
+  prune = true
+[rerere]
+  enabled = true
+  autoupdate = true
