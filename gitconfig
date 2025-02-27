@@ -38,6 +38,7 @@
   push-mr = "!sh -c 'git push -o merge_request.create -o merge_request.target=master --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'"
   yd = !sh -c ydiff -s -w0
   yl = !sh -c ydiff -ls -w0
+	fpush = push --force-with-lease
 [branch]
   sort = -committerdate
 [column]
