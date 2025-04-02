@@ -1,13 +1,15 @@
 # vim: syntax=gitconfig
 
-[includeif "gitdir:/home/dmaphy/projects/fedora/"]
-    path = .gitconfig.fedora
-[includeif "gitdir:/home/dmaphy/projects/inovex/"]
-    path = .gitconfig.inovex
-[includeif "gitdir:/home/dmaphy/projects/"]
-    path = .gitconfig.dmaphy
 [user]
   name = Dominic Hopf
+[include]
+  path = .gitconfig.dmaphy
+[includeif "gitdir:/home/dmaphy/projects/fedora/"]
+  path = .gitconfig.fedora
+[includeif "gitdir:/home/dmaphy/projects/inovex/"]
+  path = .gitconfig.inovex
+[includeif "gitdir:/home/dmaphy/projects/"]
+  path = .gitconfig.dmaphy
 [alias]
   chgd  = diff HEAD
   fpu   = format-patch -s -p origin/master
