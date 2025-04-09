@@ -11,8 +11,9 @@
 [includeif "gitdir:/home/dmaphy/projects/"]
   path = .gitconfig.dmaphy
 [alias]
+  commit = commit --signoff
   chgd  = diff HEAD
-  fpu   = format-patch -s -p origin/master
+  fpu   = format-patch -s -p origin/main
   graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f]\\+/\"&\"/g' ; echo '}'; }; f"
   one   = "!sh -c 'git show -s --pretty=\"tformat:%h (%s, %ai\" \"$@\" | sed -e \"s/ [012][0-9]:[0-5][0-9]:[0-5][0-9] [-+][0-9][0-9][0-9][0-9]$/)/\"' -"
   out   = !git push --dry-run
@@ -43,6 +44,8 @@
 	fpush = push --force-with-lease
 [branch]
   sort = -committerdate
+  autoSetupMerge = simple
+  autoSetupRebase = always
 [column]
   ui = auto
 [color]
