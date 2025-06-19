@@ -29,6 +29,8 @@ alias krew='kubectl krew'
 alias kubecm="kubectl kc"
 #alias kyverno='kubectl kyverno'
 alias stern='kubectl stern'
+alias kubepug='kubectl deprecations'
+alias kslice=kubectl-slice -o rendered/$(date +'%Y-%m-%d_%H-%M-%S') -t "{{if .metadata.namespace}}{{.metadata.namespace|lower}}{{else}}_no_ns_{{end}}/{{.kind|lower}}.{{.metadata.name|lower}}.yaml"
 
 if [ -x /usr/bin/gpg2 ]; then
   alias gpg="gpg2"
