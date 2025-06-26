@@ -1,36 +1,17 @@
 # vim: syntax=sh
 
-#alias java=$JAVA_HOME/bin/java;
-#alias javac=$JAVA_HOME/bin/javac" -deprecation";
-#alias jar=$JAVA_HOME/bin/jar
-
-alias cya='reboot'
-alias donotwant='rm'
-alias dowant='cp'
-alias gtfo='mv'
-alias hai='cd'
-alias icanhas='mkdir'
-alias inur='locate'
-alias invisible='cat'
-alias kthxbai='halt'
-alias moar='more'
 alias mysql='mysql --line-numbers --column-names --pager=less --show-warnings';
-alias nomnom='killall'
-alias nomz='ps -aux'
-alias onoz='cat /var/log/errors.log'
-alias plz='pwd'
-alias rtfm='man'
 alias s="ssh"
-alias visible='echo'
 
 alias kc="kubecm"
 alias kcn='kubectl config set-context --current --namespace'
 alias krew='kubectl krew'
 alias kubecm="kubectl kc"
-#alias kyverno='kubectl kyverno'
+alias kyverno='kubectl kyverno'
 alias stern='kubectl stern'
 alias kubepug='kubectl deprecations'
 alias kslice=kubectl-slice -o rendered/$(date +'%Y-%m-%d_%H-%M-%S') -t "{{if .metadata.namespace}}{{.metadata.namespace|lower}}{{else}}_no_ns_{{end}}/{{.kind|lower}}.{{.metadata.name|lower}}.yaml"
+alias ks="switch"
 
 if [ -x /usr/bin/gpg2 ]; then
   alias gpg="gpg2"
