@@ -60,6 +60,7 @@
   fsmonitor = true
   untrackedCache = true
   pager = less -x5,9
+  excludesFile = ~/.gitignore
 [diff]
   tool = meld
   algorithm = histogram
