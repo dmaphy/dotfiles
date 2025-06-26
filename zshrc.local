@@ -20,14 +20,14 @@
 ## /etc/zsh/zshrc was installed as ~/.zshrc.global and
 ## ~/.zshrc.local does not exist yet.
 if [ -r ~/.zshrc -a -r ~/.zshrc.global -a ! -r ~/.zshrc.local ] ; then
-	printf '-!-\n'
-	printf '-!- Looks like you are using the old zshrc layout of grml.\n'
-	printf '-!- Please read the notes in the grml-zsh-refcard, being'
-	printf '-!- available at: http://grml.org/zsh/\n'
-	printf '-!-\n'
-	printf '-!- If you just want to get rid of this warning message execute:\n'
-	printf '-!-        touch ~/.zshrc.local\n'
-	printf '-!-\n'
+    printf '-!-\n'
+    printf '-!- Looks like you are using the old zshrc layout of grml.\n'
+    printf '-!- Please read the notes in the grml-zsh-refcard, being'
+    printf '-!- available at: http://grml.org/zsh/\n'
+    printf '-!-\n'
+    printf '-!- If you just want to get rid of this warning message execute:\n'
+    printf '-!-        touch ~/.zshrc.local\n'
+    printf '-!-\n'
 fi
 
 # Settings for umask
@@ -110,7 +110,7 @@ bindkey -M menuselect 'l' vi-forward-char         # right
 bindkey -M menuselect 'j' vi-down-line-or-history # bottom
 
 ## set command prediction from history, see 'man 1 zshcontrib'
-is4 && zrcautoload predict-on && \
+zrcautoload predict-on && \
 zle -N predict-on         && \
 zle -N predict-off        && \
 bindkey "^X^Z" predict-on && \
@@ -132,9 +132,33 @@ WORDCHARS=.
 WORDCHARS='*?_[]~=&;!#$%^(){}'
 WORDCHARS='${WORDCHARS:s@/@}'
 
+# just type '...' to get '../..'
+rationalise-dot() {
+local MATCH
+if [[ $LBUFFER =~ '(^|/| |	|'$'\n''|\||;|&)\.\.$' ]]; then
+  LBUFFER+=/
+  zle self-insert
+  zle self-insert
+else
+  zle self-insert
+fi
+}
+zle -N rationalise-dot
+bindkey . rationalise-dot
+## without this, typing a . aborts incremental history search
+bindkey -M isearch . self-insert
 bindkey '\eq' push-line-or-edit
 
 ## some popular options ##
+
+## add `|' to output redirections in the history
+setopt histallowclobber
+
+## try to avoid the 'zsh: no matches found...'
+setopt nonomatch
+
+## warning if file exists ('cat /dev/null > ~/.zshrc')
+setopt NO_clobber
 
 ## don't warn me about bg processes when exiting
 #setopt nocheckjobs
@@ -144,6 +168,10 @@ setopt printexitvalue
 
 ## Allow comments even in interactive shells
 setopt interactivecomments
+
+## if a new command line being added to the history list duplicates an older
+## one, the older command is removed from the list
+setopt histignorealldups
 
 ## changed completer settings
 zstyle ':completion:*' completer _complete _correct _approximate
@@ -166,7 +194,6 @@ if [ -f $HOME/.functions ]; then
 	source $HOME/.functions
 fi
 
-
 ## translate
 alias u='translate -i'
 
@@ -176,14 +203,14 @@ alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/nu
 
 ## global aliases (for those who like them) ##
 
-alias -g '...'='../..'
-alias -g '....'='../../..'
-check_com s &>/dev/null || alias s='ssh'
+#alias -g '...'='../..'
+#alias -g '....'='../../..'
 #alias -g BG='& exit'
 #alias -g C='|wc -l'
 #alias -g G='|grep'
 #alias -g H='|head'
 #alias -g Hl=' --help |& less -r'
+#alias -g J='|jq'
 #alias -g K='|keep'
 #alias -g L='|less'
 #alias -g LL='|& less -r'
@@ -193,6 +220,7 @@ check_com s &>/dev/null || alias s='ssh'
 #alias -g SL='| sort | less'
 #alias -g S='| sort'
 #alias -g T='|tail'
+#alias -g TS='|ts "%F %H:%M:%.S"'
 #alias -g V='| vim -'
 
 ## instead of global aliase it might be better to use grmls $abk assoc array, whose contents are expanded after pressing ,.
@@ -260,21 +288,8 @@ fi
 check_com zsh-mime-setup || { autoload zsh-mime-setup && zsh-mime-setup }
 alias -s pl='perl -S'
 
-## Some quick Perl-hacks aka /useful/ oneliner
-bew() { perl -le 'print unpack "B*","'$1'"' }
-web() { perl -le 'print pack "B*","'$1'"' }
-hew() { perl -le 'print unpack "H*","'$1'"' }
-weh() { perl -le 'print pack "H*","'$1'"' }
-pversion()    { perl -M$1 -le "print $1->VERSION" } # i. e."pversion LWP -> 5.79"
-getlinks ()   { perl -ne 'while ( m/"((www|ftp|http):\/\/.*?)"/gc ) { print $1, "\n"; }' $* }
-gethrefs ()   { perl -ne 'while ( m/href="([^"]*)"/gc ) { print $1, "\n"; }' $* }
-getanames ()  { perl -ne 'while ( m/a name="([^"]*)"/gc ) { print $1, "\n"; }' $* }
-getforms ()   { perl -ne 'while ( m:(\</?(input|form|select|option).*?\>):gic ) { print $1, "\n"; }' $* }
-getstrings () { perl -ne 'while ( m/"(.*?)"/gc ) { print $1, "\n"; }' $*}
-getanchors () { perl -ne 'while ( m/«([^«»\n]+)»/gc ) { print $1, "\n"; }' $* }
-showINC ()    { perl -e 'for (@INC) { printf "%d %s\n", $i++, $_ }' }
-vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
-vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
+## ctrl-s will no longer freeze the terminal.
+#stty erase "^?"
 
 ## disable some grml zshrc features
 unsetopt share_history
