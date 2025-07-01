@@ -158,7 +158,7 @@ setopt histallowclobber
 setopt nonomatch
 
 ## warning if file exists ('cat /dev/null > ~/.zshrc')
-setopt NO_clobber
+#setopt NO_clobber
 
 ## don't warn me about bg processes when exiting
 #setopt nocheckjobs
