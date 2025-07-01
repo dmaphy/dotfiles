@@ -4,12 +4,12 @@
   name = Dominic Hopf
 [include]
   path = .gitconfig.dmaphy
+[includeif "gitdir:/home/dmaphy/projects/"]
+  path = .gitconfig.dmaphy
 [includeif "gitdir:/home/dmaphy/projects/fedora/"]
   path = .gitconfig.fedora
 [includeif "gitdir:/home/dmaphy/projects/inovex/"]
   path = .gitconfig.inovex
-[includeif "gitdir:/home/dmaphy/projects/"]
-  path = .gitconfig.dmaphy
 [alias]
   commit = commit --signoff
   chgd  = diff HEAD
