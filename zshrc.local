@@ -42,67 +42,6 @@ fi
 
 source ~/.vi-mode.zsh
 
-## Prompt theme extension ##
-# Virtualenv support
-function virtual_env_prompt () {
-	REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
-}
-
-function python_environment_prompt() {
-	if [[ -n "$PYENV_VERSION" ]]; then
-	  REPLY="(Python $PYENV_VERSION)"
-	elif [ $commands[pyenv] ]; then
-		local pyenv_version_name="$(pyenv version-name)"
-		local pyenv_global="system"
-		local pyenv_root="$(pyenv root)"
-
-		if [[ -f "${pyenv_root}/version" ]]; then
-			pyenv_global="$(pyenv version-file-read ${pyenv_root}/version)"
-		fi
-
-		if [[ "${pyenv_version_name}" != "${pyenv_global}" ]]; then
-			REPLY="(Python ${pyenv_version_name})"
-		fi
-	fi
-
-}
-
-function vcs_status_prompt () {
-	GIT_SH_PROMPT=/usr/share/git-core/contrib/completion/git-prompt.sh
-
-	if [ -f ${GIT_SH_PROMPT} ]; then
-		source ${GIT_SH_PROMPT}
-		GIT_PS1_SHOWDIRTYSTATE=1
-		GIT_PS1_SHOWSTASHSTATE=1
-		GIT_PS1_SHOWUNTRACKEDFILES=1
-		GIT_PS1_SHOWUPSTREAM="verbose name"
-		GIT_PS1_DESCRIBE_STYLE="default"
-		GIT_PS1_SHOWCOLORHINTS=1
-		REPLY=$(__git_ps1)
-	else
-		REPLY=""
-	fi
-}
-
-grml_theme_add_token virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-grml_theme_add_token pyenv -f python_environment_prompt '%F{magenta}' '%f'
-grml_theme_add_token vi-mode '%1v' '%F{blue}(' ')%f%k '
-grml_theme_add_token vcs-status -f vcs_status_prompt
-
-zstyle ':vcs_info:*' enable git cvs svn bzr darcs
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' check-for-staged-changes true
-zstyle ':vcs_info:*' get-revision true
-zstyle ':vcs_info:*' stagedstr '%F{green} +%f'
-zstyle ':vcs_info:*' unstagedstr '%F{red} +%f'
-
-zstyle ':prompt:grml:*:items:date' token '%D{%Y-%m-%d} '
-zstyle ':prompt:grml:*:items:time' token '%D{%H:%M:%S %s} '
-zstyle ':prompt:grml:left:setup' items newline vi-mode date time pyenv vcs-status newline rc virtual-env change-root user at host path vcs percent
-zstyle ':prompt:grml:right:setup' items battery sad-smiley 
-
-## ZLE tweaks ##
-
 ## use the vi navigation keys (hjkl) besides cursor keys in menu completion
 bindkey -M menuselect 'h' vi-backward-char        # left
 bindkey -M menuselect 'k' vi-up-line-or-history   # up
@@ -158,7 +97,7 @@ setopt histallowclobber
 setopt nonomatch
 
 ## warning if file exists ('cat /dev/null > ~/.zshrc')
-#setopt NO_clobber
+setopt NO_clobber
 
 ## don't warn me about bg processes when exiting
 #setopt nocheckjobs
@@ -200,46 +139,11 @@ alias u='translate -i'
 ## ignore ~/.ssh/known_hosts entries
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
 
-
-## global aliases (for those who like them) ##
-
-#alias -g '...'='../..'
-#alias -g '....'='../../..'
-#alias -g BG='& exit'
-#alias -g C='|wc -l'
-#alias -g G='|grep'
-#alias -g H='|head'
-#alias -g Hl=' --help |& less -r'
-#alias -g J='|jq'
-#alias -g K='|keep'
-#alias -g L='|less'
-#alias -g LL='|& less -r'
-#alias -g M='|most'
-#alias -g N='&>/dev/null'
-#alias -g R='| tr A-z N-za-m'
-#alias -g SL='| sort | less'
-#alias -g S='| sort'
-#alias -g T='|tail'
-#alias -g TS='|ts "%F %H:%M:%.S"'
-#alias -g V='| vim -'
-
 ## instead of global aliase it might be better to use grmls $abk assoc array, whose contents are expanded after pressing ,.
 #$abk[SnL]="| sort -n | less"
 
 ## get top 10 shell commands:
 alias top10='print -l ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
-
-## Execute \kbd{./configure}
-#alias CO="./configure"
-
-## Execute \kbd{./configure --help}
-#alias CH="./configure --help"
-
-## miscellaneous code ##
-fpath=($fpath $HOME/.zshcomp)
-autoload -U compinit
-compinit
-zstyle ':completion:*:default' menu select=1
 
 ## Use a default width of 80 for manpages for more convenient reading
 export MANWIDTH=${MANWIDTH:-80}
