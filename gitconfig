@@ -90,6 +90,7 @@
   comand = xz -c
 [pager]
   color = true
+  branch = false
 [pull]
 	rebase = true
 [push]
