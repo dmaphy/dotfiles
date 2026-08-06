@@ -121,7 +121,6 @@ __minikube_quote() {
 		printf %q "$1"
 	fi
 }
-autoload -U +X bashcompinit && bashcompinit
 # use word boundary patterns for BSD or GNU sed
 LWORD='[[:<:]]'
 RWORD='[[:>:]]'
