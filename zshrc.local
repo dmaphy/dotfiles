@@ -198,10 +198,12 @@ alias -s pl='perl -S'
 ## disable some grml zshrc features
 unsetopt share_history
 unsetopt append_history
+unsetopt beep
 
 bindkey -v
-bindkey '^E' edit-command-line
+bindkey "^E" edit-command-line
 bindkey "^H" run-help
+bindkey '^ ' autosuggest-accept
 
 bindkey "\e[1~" beginning-of-line
 bindkey "\e[4~" end-of-line
