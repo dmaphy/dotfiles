@@ -22,7 +22,7 @@ plugins=(ansible autojump autopep8 aws azure battery bgnotify colored-man-pages
   isodate jira jsontools k9s kind kompose kubectl kubectx minikube mise nmap
   opentofu operator-sdk pass pep8 perl pip pipenv podman pre-commit pyenv
   pylint python qrcode redis-cli rsync screen skaffold ssh ssh-agent starship
-  systemd taskwarrior terraform thefuck themes tig timer tldr tmux urltools uv
+  systemd taskwarrior terraform thefuck themes tig timer tldr tmux urltools
   vagrant vagrant-prompt vault vi-mode virtualenv vscode zsh-interactive-cd)
 
 # branch chezmoi
@@ -35,14 +35,14 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(kubeswitch init zsh)
 source <(kubeswitch completion zsh)
 source <(carapace _carapace zsh)
-source /home/dmaphy/projects/fzf-tab/fzf-tab.plugin.zsh
+#source /home/dmaphy/projects/fzf-tab/fzf-tab.plugin.zsh
 
 # costs at least three seconds more at startup
 #source /home/dmaphy/projects/fzf-zsh-completions/fzf-zsh-completions.plugin.zsh
 
 source /usr/share/bash-completion/completions/azure-cli
 source /usr/share/bash-completion/completions/timew
-source $HOME/.bash_completions/_kubie
+source /usr/share/bash-completion/completions/kubie.bash
 #source $HOME/.bash_completions/_openstack
 #eval "$(_YAOOKCTL_COMPLETE=zsh_source yaookctl)"
 eval "$(direnv hook zsh)"
