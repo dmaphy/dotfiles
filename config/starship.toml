@@ -1,0 +1,47 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = true
+format = '$all$directory$character'
+
+[directory]
+truncation_symbol = '.../'
+
+[direnv]
+disabled = false
+
+[git_commit]
+only_detached = false
+tag_disabled = false
+disabled = false
+
+[git_metrics]
+only_nonzero_diffs = false
+disabled = false
+
+[kubernetes]
+disabled = false
+format = '[$symbml$context( \($namespace\))]($style) '
+
+[line_break]
+disabled = false
+
+[memory_usage]
+disabled = false
+
+[mise]
+disabled = false
+
+[status]
+disabled = false
+
+[sudo]
+disabled = false
+
+[time]
+disabled = false
+
+[custom.taskwarrior]
+command = "task +PENDING count"
+when = "command -v task"
+shell = ["bash", "--noprofile", "--norc"]
+format = "[⧖ $output tasks](bold yellow) "
