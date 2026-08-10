@@ -2,6 +2,8 @@
 
 alias mysql='mysql --line-numbers --column-names --pager=less --show-warnings';
 alias s="ssh"
+## ignore ~/.ssh/known_hosts entries
+alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "PreferredAuthentications=keyboard-interactive"'
 
 alias kc="kubecm"
 alias kcn='kubectl config set-context --current --namespace'
