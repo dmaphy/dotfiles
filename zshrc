@@ -85,7 +85,7 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="robbyrussell"
 plugins=(ansible autojump autopep8 aws azure battery bgnotify colored-man-pages
   colorize command-not-found cpanm dircycle direnv dirhistory dirpersist dnf
-  docker docker-compose dotenv firewalld fluxcd fzf gcloud git git-auto-fetch
+  docker docker-compose dotenv firewalld fluxcd gcloud git git-auto-fetch
   git-commit git-extras gitfast gitignore git-lfs gnu-utils gpg-agent helm
   isodate jira jsontools k9s kind kompose kubectl kubectx minikube mise nmap
   opentofu operator-sdk pass pep8 perl pip pipenv podman pre-commit pyenv
@@ -103,10 +103,6 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(kubeswitch init zsh)
 source <(kubeswitch completion zsh)
 source <(carapace _carapace zsh)
-#source /home/dmaphy/projects/fzf-tab/fzf-tab.plugin.zsh
-
-# costs at least three seconds more at startup
-#source /home/dmaphy/projects/fzf-zsh-completions/fzf-zsh-completions.plugin.zsh
 
 source /usr/share/bash-completion/completions/azure-cli
 source /usr/share/bash-completion/completions/timew
