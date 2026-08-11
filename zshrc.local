@@ -88,7 +88,7 @@ restart () {
 }
 
 bindkey -v
-bindkey "^E" edit-command-line
+bindkey "^v" edit-command-line
 bindkey "^H" run-help
 bindkey '^ ' autosuggest-accept
 
