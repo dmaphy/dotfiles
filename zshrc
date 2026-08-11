@@ -4,6 +4,8 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
+unsetopt append_history share_history
+
 # save each command's beginning timestamp and the duration to the history file
 setopt extended_history
 
