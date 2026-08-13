@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 add_newline = true
 format = '$all$directory$character'
-command_timeout = 800
+command_timeout = 1000
 
 [directory]
 truncation_symbol = '.../'
