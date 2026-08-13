@@ -4,15 +4,6 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
-unsetopt append_history share_history
-
-# save each command's beginning timestamp and the duration to the history file
-setopt extended_history
-
-# remove command lines from the history list when the first character on the
-# line is a space
-setopt histignorespace
-
 # if a command is issued that can't be executed as a normal command, and the
 # command is the name of a directory, perform the cd command to that directory.
 setopt auto_cd
@@ -56,9 +47,6 @@ setopt noshwordsplit
 # don't error out when unset parameters are used
 setopt unset
 
-## add `|' to output redirections in the history
-setopt histallowclobber
-
 ## try to avoid the 'zsh: no matches found...'
 setopt nonomatch
 
@@ -71,10 +59,6 @@ setopt printexitvalue
 ## Allow comments even in interactive shells
 setopt interactivecomments
 
-## if a new command line being added to the history list duplicates an older
-## one, the older command is removed from the list
-setopt histignorealldups
-
 zstyle :compinstall filename '/home/dmaphy/.zshrc'
 fpath=($fpath $HOME/.zshcomp)
 autoload -Uz compinit && compinit
@@ -83,6 +67,7 @@ autoload -Uz bashcompinit &&  bashcompinit
 zstyle ':completion:*:default' menu select=1
 
 export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$HOME/projects/dotfiles/oh-my-zsh-custom/"
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="robbyrussell"
 plugins=(ansible autojump autopep8 aws azure battery bgnotify colored-man-pages
