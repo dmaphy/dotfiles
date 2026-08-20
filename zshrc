@@ -102,10 +102,10 @@ complete -o nospace -C /usr/bin/terraform terraform
 complete -o nospace -C /usr/bin/aws_completer aws
 
 export MCFLY_KEY_SCHEME=vim
-export MCFLY_FUZZY=2
+export MCFLY_FUZZY=0
 export MCFLY_RESULTS=128
 export MCFLY_INTERFACE_VIEW=BOTTOM
-export MCFLY_DISABLE_MENU=TRUE
+export MCFLY_DISABLE_MENU=FALSE
 export MCFLY_RESULTS_SORT=LAST_RUN
 export MCFLY_PROMPT="❯"
 
