@@ -1,5 +1,5 @@
 README.md
-etc/zshrc
+etc
 .zshcomp/_surfboard
 coprlist
 zsh.packages
