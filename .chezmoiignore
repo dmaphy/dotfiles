@@ -1,5 +1,6 @@
-README.md
-etc
 .zshcomp/_surfboard
+README.md
 coprlist
+etc
 zsh.packages
+zshrc.grml
