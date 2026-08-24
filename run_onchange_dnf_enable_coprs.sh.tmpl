@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "fedora" -}}
+#!/usr/bin/env bash
+
+{{ range .coprs -}}
+sudo dnf copr enable {{ . | quote }}
+{{ end -}}
+{{ end -}}

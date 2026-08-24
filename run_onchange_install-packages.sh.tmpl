@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "fedora" -}}
+#!/usr/bin/env bash
+
+sudo dnf install --file=/dev/stdin <<EOF
+{{ range .packages }}
+{{ . | quote }}
+{{ end -}}
+EOF
+{{ end -}}
