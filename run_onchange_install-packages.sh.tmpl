@@ -2,7 +2,16 @@
 #!/usr/bin/env bash
 
 sudo dnf install --file=/dev/stdin <<EOF
-{{ range .packages }}
+{{ range .packages.rpms }}
+{{ . | quote }}
+{{ end -}}
+EOF
+
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install --from https://releases.threema.ch/flatpak/threema-desktop/ch.threema.threema-desktop.flatpakref
+flatpak install --file=/dev/stdin <<EOF
+{{ range .packages.flatpaks }}
 {{ . | quote }}
 {{ end -}}
 EOF
