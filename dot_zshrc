@@ -67,7 +67,7 @@ autoload -Uz bashcompinit &&  bashcompinit
 zstyle ':completion:*:default' menu select=1
 
 export ZSH="$HOME/.oh-my-zsh"
-export ZSH_CUSTOM="$HOME/projects/dotfiles/oh-my-zsh-custom/"
+export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom/"
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="robbyrussell"
 plugins=(ansible autojump autopep8 aws azure battery bgnotify colored-man-pages
