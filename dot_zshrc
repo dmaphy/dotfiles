@@ -84,7 +84,9 @@ plugins=(ansible autojump autopep8 aws azure battery bgnotify colored-man-pages
 
 source $ZSH/oh-my-zsh.sh
 
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 source <(kubeswitch init zsh)
@@ -106,8 +108,10 @@ export MCFLY_FUZZY=0
 export MCFLY_RESULTS=128
 export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_DISABLE_MENU=FALSE
-export MCFLY_RESULTS_SORT=LAST_RUN
+#export MCFLY_RESULTS_SORT=LAST_RUN
+export MCFLY_RESULTS_SORT=RANK
 export MCFLY_PROMPT="❯"
+export MCFLY_DELETE_WITHOUT_CONFIRM=true
 
 eval "$(mcfly init zsh)"
 eval "$(mise activate zsh)"

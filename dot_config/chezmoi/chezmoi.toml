@@ -3,3 +3,10 @@
   autoPush = true
   commitMessageTemplate = "{{ promptString \"Commit message\" }}"
 
+[merge]
+    command = "meld"
+    args = [
+        "{{ .Destination }}",
+        "{{ .Source }}",
+        "{{ .Target }}",
+    ]
