@@ -9,6 +9,7 @@ coprs:
   - 'mroche/cloud-native-utilities'
   - 'nonamedotc/xfce_next'
   - 'paolojr/tools'
+  - 'patrickl/infra'
   - 'relativesure/all-packages'
   - 'tmichett/Dyff'
   - 'virulent/carapace-bin'

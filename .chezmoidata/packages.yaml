@@ -6,6 +6,7 @@ packages:
     - 'cekit-zsh-completion'
     - 'cheat-zsh-completion'
     - 'direnv'
+    - 'forgejo-cli'
     - 'git'
     - 'gpaste-zsh-completion'
     - 'kubeswitch'
