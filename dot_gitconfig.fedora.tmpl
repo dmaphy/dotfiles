@@ -3,4 +3,8 @@
   email = dmaphy@fedoraproject.org
   signingkey = A7DFC4FC07AE4DDC5CA0BD93AAB06019CA7D868D
 [commit]
+  {{- if eq .chezmoi.hostname "hellraiser" }}
 	gpgsign = true
+  {{- else }}
+	gpgsign = false
+  {{- end }}

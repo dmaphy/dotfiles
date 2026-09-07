@@ -4,4 +4,8 @@
   email = dominic.hopf@inovex.de
   signingkey = 7DD4E21DE636357FED221FFE9A6B40A0CA19C929
 [commit]
+  {{- if eq .chezmoi.hostname "lapdhopf" }}
 	gpgsign = true
+  {{- else }}
+	gpgsign = false
+  {{- end }}
