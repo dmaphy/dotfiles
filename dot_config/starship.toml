@@ -1,7 +1,7 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 add_newline = true
-format = '$all$directory$character'
+format = '$all$directory$character$stashed'
 command_timeout = 1200
 
 [directory]
@@ -18,6 +18,11 @@ disabled = false
 [git_metrics]
 only_nonzero_diffs = false
 disabled = false
+
+[git_status]
+stashed = '\$'
+disabled = false
+use_git_executable = true
 
 [kubernetes]
 disabled = false
