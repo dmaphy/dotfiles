@@ -21,6 +21,9 @@ disabled = false
 
 [git_status]
 stashed = '\$'
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
 disabled = false
 use_git_executable = true
 
